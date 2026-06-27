@@ -285,6 +285,16 @@ body{
 }
 .tag-event{background:rgba(201,168,76,.12);color:var(--gold);}
 .tag-format{background:rgba(100,80,180,.2);color:#b4a8e8;}
+.card-folder{
+  display:flex;align-items:center;gap:5px;
+  margin-top:8px;
+  font-size:11px;color:var(--text3);
+  background:rgba(255,255,255,.03);
+  border-radius:6px;padding:4px 8px;
+  font-family:monospace;
+  letter-spacing:.01em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
 .card-notes{
   margin-top:10px;
   padding:8px 10px;
@@ -532,6 +542,7 @@ function cardHTML(g) {
   const eventTags = g.events.map(e => `<span class="tag tag-event">${e}</span>`).join('');
   const fmtTags = g.format.map(f => `<span class="tag tag-format">${f}</span>`).join('');
   const notes = g.notes ? `<div class="card-notes">💡 ${g.notes}</div>` : '';
+  const folderLine = g.folder ? `<div class="card-folder">📁 G:\\...\\${g.folder}</div>` : '';
   return `
     <div class="card">
       ${dupBadge}
@@ -544,6 +555,7 @@ function cardHTML(g) {
         <div class="card-icon"><span>⏱</span><span>${g.duration} мин</span></div>
       </div>
       <div class="card-tags">${eventTags}${fmtTags}</div>
+      ${folderLine}
       ${notes}
     </div>`;
 }
