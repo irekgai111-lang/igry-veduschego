@@ -106,6 +106,8 @@ def fmt_card(g, short=True):
     fmts = ', '.join(g.get('format', []))
 
     lines = [f"🎭 <b>{g['name']}</b>"]
+    if g.get('tagline'):
+        lines.append(f"<i>{g['tagline']}</i>")
     if icons:
         lines.append(' · '.join(icons))
     if events:
