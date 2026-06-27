@@ -1,0 +1,17 @@
+[Unit]
+Description=Архив игр ведущего — Telegram Bot
+After=network.target
+
+[Service]
+Type=simple
+User=agent
+WorkingDirectory=/home/agent/projects/igry-veduschego
+EnvironmentFile=/home/agent/projects/igry-veduschego/.env
+ExecStart=/usr/bin/python3 /home/agent/projects/igry-veduschego/bot.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
