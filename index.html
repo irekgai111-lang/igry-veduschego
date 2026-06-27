@@ -336,6 +336,84 @@ body{
 }
 .dup-section p{font-size:13px;color:var(--text3);margin-bottom:18px;}
 
+/* ── SCENARIOS ── */
+.scenarios-wrap{padding:20px;}
+.scenarios-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:16px;gap:12px;flex-wrap:wrap;
+}
+.scenarios-header h2{
+  font-family:'Playfair Display',serif;
+  font-size:20px;color:var(--text);margin-bottom:4px;
+}
+.scenarios-header p{font-size:13px;color:var(--text3);}
+.add-scenario-btn{
+  padding:9px 18px;
+  background:linear-gradient(135deg,rgba(201,168,76,.25),rgba(201,168,76,.1));
+  border:1px solid var(--gold);
+  border-radius:20px;color:var(--gold2);
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:all .2s;
+}
+.add-scenario-btn:hover{background:linear-gradient(135deg,rgba(201,168,76,.4),rgba(201,168,76,.2));}
+.scenario-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
+.s-chip{
+  padding:5px 14px;border-radius:20px;
+  border:1px solid var(--border);background:rgba(255,255,255,.03);
+  color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;
+  transition:all .18s;font-family:'Inter',sans-serif;
+}
+.s-chip.active{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(201,168,76,.1));border-color:var(--gold);color:var(--gold2);}
+.scenario-card{
+  background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:12px;
+  transition:border-color .2s;
+}
+.scenario-card:hover{border-color:var(--border);}
+.sc-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.sc-date{font-size:13px;color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums;}
+.sc-type{
+  padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600;
+  background:rgba(201,168,76,.12);color:var(--gold);text-transform:uppercase;letter-spacing:.06em;
+}
+.sc-client{font-family:'Playfair Display',serif;font-size:17px;color:var(--text);font-weight:600;}
+.sc-meta{display:flex;gap:14px;font-size:12px;color:var(--text3);margin-bottom:10px;}
+.sc-games{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.sc-game-tag{
+  padding:3px 9px;border-radius:8px;font-size:11px;
+  background:rgba(100,80,180,.15);color:#b4a8e8;border:1px solid rgba(100,80,180,.2);
+}
+.sc-notes{
+  margin-top:10px;font-size:12px;color:var(--text3);font-style:italic;
+  padding:7px 10px;background:rgba(255,255,255,.03);border-radius:6px;
+}
+.sc-folder{font-size:11px;color:var(--text3);margin-top:6px;font-family:monospace;}
+.scenario-form{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;margin-top:16px;
+}
+.scenario-form h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--text);margin-bottom:16px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-field{display:flex;flex-direction:column;gap:5px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);opacity:.8;}
+.form-field input,.form-field select,.form-field textarea{
+  padding:9px 12px;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;
+  outline:none;transition:border-color .2s;
+}
+.form-field input:focus,.form-field select,.form-field textarea:focus{border-color:var(--gold);}
+.form-field select{cursor:pointer;}
+.form-field textarea{resize:vertical;}
+.form-actions{display:flex;gap:10px;margin-top:16px;}
+.form-cancel{padding:8px 18px;border:1px solid var(--border);border-radius:20px;background:none;color:var(--text3);font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;}
+.form-submit{padding:8px 20px;background:linear-gradient(135deg,rgba(201,168,76,.3),rgba(201,168,76,.15));border:1px solid var(--gold);border-radius:20px;color:var(--gold2);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+.form-result{margin-top:16px;padding:14px;background:var(--bg3);border-radius:8px;}
+.form-result p{font-size:12px;color:var(--text3);margin-bottom:8px;}
+.form-result textarea{width:100%;padding:8px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-size:11px;font-family:monospace;resize:none;}
+.form-result button{margin-top:8px;padding:6px 14px;border:1px solid var(--border);border-radius:12px;background:none;color:var(--gold);font-size:12px;cursor:pointer;}
+.no-scenarios{text-align:center;padding:40px;color:var(--text3);font-size:14px;}
+
 /* ── MOBILE ── */
 @media(max-width:600px){
   .filters-grid{grid-template-columns:1fr 1fr;}
@@ -358,6 +436,7 @@ body{
 <div class="tabs">
   <button class="tab-btn active" data-tab="all">Все игры</button>
   <button class="tab-btn" data-tab="dups">Дубликаты</button>
+  <button class="tab-btn" data-tab="scenarios">📋 Сценарии</button>
 </div>
 
 <div class="controls">
@@ -437,6 +516,75 @@ body{
     <h2>Дубликаты</h2>
     <p>Игры, у которых задан <code>duplicate_of</code> — возможные повторы из разных источников.</p>
     <div class="games-grid" id="dups-grid"></div>
+  </div>
+</div>
+
+<!-- TAB: SCENARIOS -->
+<div class="tab-panel" id="tab-scenarios">
+  <div class="scenarios-wrap">
+    <div class="scenarios-header">
+      <div>
+        <h2>📋 Журнал сценариев</h2>
+        <p>История мероприятий — даты, клиенты, использованные игры</p>
+      </div>
+      <button class="add-scenario-btn" id="add-scenario-btn">+ Добавить</button>
+    </div>
+
+    <div class="scenario-filters">
+      <button class="s-chip active" data-type="все">Все</button>
+      <button class="s-chip" data-type="свадьба">Свадьба</button>
+      <button class="s-chip" data-type="юбилей">Юбилей</button>
+      <button class="s-chip" data-type="выпускной">Выпускной</button>
+      <button class="s-chip" data-type="корпоратив">Корпоратив</button>
+    </div>
+
+    <div id="scenarios-list"></div>
+
+    <!-- Форма добавления -->
+    <div class="scenario-form" id="scenario-form" style="display:none">
+      <h3>Новый сценарий</h3>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Дата</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="form-field">
+          <label>Тип события</label>
+          <select id="f-type">
+            <option>свадьба</option>
+            <option>юбилей</option>
+            <option>выпускной</option>
+            <option>корпоратив</option>
+            <option>день рождения</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Клиент / название</label>
+          <input type="text" id="f-client" placeholder="Иванов, Юбилей Марины...">
+        </div>
+        <div class="form-field">
+          <label>Гостей</label>
+          <input type="number" id="f-guests" placeholder="60">
+        </div>
+        <div class="form-field full">
+          <label>Папка на диске</label>
+          <input type="text" id="f-folder" placeholder="Свадьба 2025 Иванов">
+        </div>
+        <div class="form-field full">
+          <label>Заметки</label>
+          <textarea id="f-notes" placeholder="Зал, экран, особенности..." rows="2"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="form-cancel" id="form-cancel">Отмена</button>
+        <button class="form-submit" id="form-submit">Сохранить ↓</button>
+      </div>
+      <div class="form-result" id="form-result" style="display:none">
+        <p>Скопируй и отправь Агенту — он добавит в архив:</p>
+        <textarea id="form-json" rows="6" readonly></textarea>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('form-json').value)">📋 Скопировать</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -581,6 +729,102 @@ function renderDups() {
   }
   grid.innerHTML = dups.map(cardHTML).join('');
 }
+
+// ── SCENARIOS ──
+let allScenarios = [];
+let activeScenarioType = 'все';
+
+fetch('scenarios.json')
+  .then(r => r.json())
+  .then(data => {
+    allScenarios = data;
+    renderScenarios();
+  });
+
+function renderScenarios() {
+  const list = document.getElementById('scenarios-list');
+  let filtered = allScenarios;
+  if (activeScenarioType !== 'все') {
+    filtered = filtered.filter(s => s.type === activeScenarioType);
+  }
+  // Сортировка: свежие сверху
+  filtered = filtered.slice().sort((a, b) => b.date.localeCompare(a.date));
+
+  if (!filtered.length) {
+    list.innerHTML = `<div class="no-scenarios">Нет мероприятий в этой категории</div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(s => {
+    const gameTags = (s.games_used || []).map(id => {
+      const g = allGames.find(x => x.id === id);
+      return g ? `<span class="sc-game-tag">${g.name}</span>` : `<span class="sc-game-tag">#${id}</span>`;
+    }).join('');
+    const folderLine = s.folder ? `<div class="sc-folder">📁 ${s.folder}</div>` : '';
+    const notesLine = s.notes ? `<div class="sc-notes">💡 ${s.notes}</div>` : '';
+    const dateFormatted = s.date ? new Date(s.date).toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'}) : '';
+    return `
+      <div class="scenario-card">
+        <div class="sc-header">
+          <span class="sc-date">${dateFormatted}</span>
+          <span class="sc-type">${s.type}</span>
+          <span class="sc-client">${s.client}</span>
+        </div>
+        <div class="sc-meta">
+          ${s.guests ? `<span>👥 ${s.guests} гостей</span>` : ''}
+          ${(s.games_used || []).length ? `<span>🎭 ${s.games_used.length} игр</span>` : ''}
+        </div>
+        ${gameTags ? `<div class="sc-games">${gameTags}</div>` : ''}
+        ${folderLine}
+        ${notesLine}
+      </div>`;
+  }).join('');
+}
+
+// Фильтры сценариев
+document.querySelectorAll('.s-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.s-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeScenarioType = chip.dataset.type;
+    renderScenarios();
+  });
+});
+
+// Кнопка "Добавить"
+document.getElementById('add-scenario-btn').addEventListener('click', () => {
+  const form = document.getElementById('scenario-form');
+  const isVisible = form.style.display !== 'none';
+  form.style.display = isVisible ? 'none' : 'block';
+  if (!isVisible) {
+    document.getElementById('form-result').style.display = 'none';
+    document.getElementById('form-json').value = '';
+    // Дата по умолчанию — сегодня
+    document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
+  }
+});
+
+document.getElementById('form-cancel').addEventListener('click', () => {
+  document.getElementById('scenario-form').style.display = 'none';
+});
+
+// Кнопка "Сохранить" — генерирует JSON-снипет
+document.getElementById('form-submit').addEventListener('click', () => {
+  const newId = (allScenarios.length ? Math.max(...allScenarios.map(s => s.id)) + 1 : 1);
+  const entry = {
+    id: newId,
+    date: document.getElementById('f-date').value,
+    type: document.getElementById('f-type').value,
+    client: document.getElementById('f-client').value || 'Без названия',
+    guests: parseInt(document.getElementById('f-guests').value) || 0,
+    folder: document.getElementById('f-folder').value,
+    games_used: [],
+    notes: document.getElementById('f-notes').value
+  };
+  const json = JSON.stringify(entry, null, 2);
+  document.getElementById('form-json').value = json;
+  document.getElementById('form-result').style.display = 'block';
+});
 </script>
 </body>
 </html>
