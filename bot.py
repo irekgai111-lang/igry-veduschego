@@ -9,6 +9,7 @@ from telegram.ext import (
     Application, CommandHandler, MessageHandler,
     CallbackQueryHandler, filters, ContextTypes
 )
+from telegram.error import TelegramError, Conflict, NetworkError, TimedOut
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 log = logging.getLogger(__name__)
@@ -278,6 +279,17 @@ async def handle_callback(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         await send_page(query, ctx, unique, page, 'all')
 
 
+async def error_handler(update: object, ctx: ContextTypes.DEFAULT_TYPE):
+    err = ctx.error
+    if isinstance(err, Conflict):
+        log.warning('Конфликт: запущен второй экземпляр бота. Завершаю этот.')
+        raise SystemExit(1)
+    if isinstance(err, (NetworkError, TimedOut)):
+        log.warning('Сетевая ошибка (временная): %s', err)
+        return
+    log.error('Ошибка: %s', err, exc_info=err)
+
+
 def main():
     if not TOKEN:
         raise RuntimeError('IGRY_BOT_TOKEN не задан. Добавь в .env файл.')
@@ -293,8 +305,9 @@ def main():
     app.add_handler(CallbackQueryHandler(handle_callback))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
+    app.add_error_handler(error_handler)
     log.info('Бот архива запущен')
-    app.run_polling(drop_pending_updates=True)
+    app.run_polling(drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == '__main__':
