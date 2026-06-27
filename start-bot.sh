@@ -1,12 +1,17 @@
 #!/bin/bash
-# Запуск/перезапуск бота архива игр
+# Запуск/перезапуск бота архива игр (с PID-файлом)
 cd /home/agent/projects/igry-veduschego
 
-# Убить старый процесс если есть
-OLD=$(pgrep -f "igry-veduschego/bot.py")
-if [ -n "$OLD" ]; then
-    kill "$OLD" 2>/dev/null
-    sleep 1
+PIDFILE="/home/agent/projects/igry-veduschego/bot.pid"
+
+# Убить старый процесс по PID-файлу
+if [ -f "$PIDFILE" ]; then
+    OLD_PID=$(cat "$PIDFILE")
+    if kill -0 "$OLD_PID" 2>/dev/null; then
+        kill "$OLD_PID"
+        sleep 1
+    fi
+    rm -f "$PIDFILE"
 fi
 
 # Запустить
@@ -18,4 +23,5 @@ with open('.env') as f:
 ")
 export IGRY_BOT_TOKEN
 nohup python3 bot.py >> bot.log 2>&1 &
-echo "Бот запущен, PID: $!"
+echo $! > "$PIDFILE"
+echo "Бот запущен, PID: $(cat $PIDFILE)"
